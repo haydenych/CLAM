@@ -32,6 +32,7 @@ class WholeSlideImage(object):
         self.wsi = openslide.open_slide(path)
         self.level_downsamples = self._assertLevelDownsamples()
         self.level_dim = self.wsi.level_dimensions
+        self.objective_power = self._assertObjectivePower()
     
         self.contours_tissue = None
         self.contours_tumor = None
@@ -368,6 +369,25 @@ class WholeSlideImage(object):
         
         return level_downsamples
 
+    def _assertObjectivePower(self):
+        try:
+            return float(self.wsi.properties[openslide.PROPERTY_NAME_OBJECTIVE_POWER])
+        except:
+            pass
+
+        # If objective power is not provided, we check if microns per pixel (mpp)
+        # is provided, and use the general standard that 20x slide scanners represent
+        # 0.5 mpp for approximation. For this, we require mpp-x and mpp-y to be similar.
+        # https://www.microscopesinternational.com/support/kb/article/ngn1284.aspx
+        try:
+            mpp_x = float(self.wsi.properties[openslide.PROPERTY_NAME_MPP_X])
+            mpp_y = float(self.wsi.properties[openslide.PROPERTY_NAME_MPP_Y])
+            assert(abs(mpp_x - mpp_y) < 0.01)
+
+            return 10.0 / ((mpp_x + mpp_y) / 2)
+        except:
+            return -1.0
+        
     def process_contours(self, save_path, patch_level=0, patch_size=256, step_size=256, **kwargs):
         save_path_hdf5 = os.path.join(save_path, str(self.name) + '.h5')
         print("Creating patches for: ", self.name, "...",)
