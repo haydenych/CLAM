@@ -98,7 +98,7 @@ parser.add_argument('--model_type', type=str, choices=['clam_sb', 'clam_mb', 'mi
 parser.add_argument('--exp_code', type=str, help='experiment code for saving results')
 parser.add_argument('--weighted_sample', action='store_true', default=False, help='enable weighted sampling')
 parser.add_argument('--model_size', type=str, choices=['small', 'big'], default='small', help='size of model, does not affect mil')
-parser.add_argument('--task', type=str, choices=['task_1_tumor_vs_normal',  'task_2_tumor_subtyping'])
+parser.add_argument('--task', type=str)
 ### CLAM specific options
 parser.add_argument('--no_inst_cluster', action='store_true', default=False,
                      help='disable instance-level clustering')
@@ -176,7 +176,29 @@ elif args.task == 'task_2_tumor_subtyping':
 
     if args.model_type in ['clam_sb', 'clam_mb']:
         assert args.subtyping 
-        
+
+elif args.task == 'cptac_luad_tumor_vs_normal':
+    args.n_classes=2
+    dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_luad.csv',
+                            data_dir= args.data_root_dir,
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {'normal_tissue':0, 'tumor_tissue':1},
+                            patient_strat=False,
+                            ignore=[])
+
+elif args.task == 'cptac_luad_male_vs_female':
+    args.n_classes=2
+    dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/male_vs_female_luad.csv',
+                            data_dir= args.data_root_dir,
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {'Male':0, 'Female':1},
+                            patient_strat=False,
+                            ignore=[])
+
 else:
     raise NotImplementedError
     
@@ -212,3 +234,6 @@ if __name__ == "__main__":
     print("end script")
 
 
+# python3 create_splits_seq.py --task custom --seed 2024 --k 10
+# CUDA_VISIBLE_DEVICES=0 python main.py --drop_out 0.25 --early_stopping --lr 2e-4 --k 10 --exp_code tumor_vs_normal_mil_100 --weighted_sample --bag_loss ce --inst_loss svm --task custom --model_type mil --log_data --data_root_dir /home/heiheiyu127/Desktop/PMCC/data/CPTAC/CPTAC-LUAD/slides/features_5x/ --embed_dim 1024
+# CUDA_VISIBLE_DEVICES=0 python main.py --drop_out 0.25 --early_stopping --lr 2e-4 --k 10 --exp_code tumor_vs_normal_clam_sb_100 --weighted_sample --bag_loss ce --inst_loss svm --task custom --model_type clam_sb --log_data --data_root_dir /home/heiheiyu127/Desktop/PMCC/data/CPTAC/CPTAC-LUAD/slides/features_5x/ --embed_dim 1024
