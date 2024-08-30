@@ -51,6 +51,16 @@ elif args.task == 'cptac_luad_tumor_vs_normal':
                             patient_strat=True,
                             ignore=[])
 
+elif args.task == 'cptac_luad_tumor_vs_normal_20x':
+    args.n_classes=2
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/tumor_vs_normal_luad_20x.csv',
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {'normal_tissue':0, 'tumor_tissue':1},
+                            patient_strat=True,
+                            ignore=[])
+
 elif args.task == 'cptac_luad_male_vs_female':
     args.n_classes=2
     dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/male_vs_female_luad.csv',
@@ -58,6 +68,36 @@ elif args.task == 'cptac_luad_male_vs_female':
                             seed = args.seed, 
                             print_info = True,
                             label_dict = {'Male':0, 'Female':1},
+                            patient_strat=True,
+                            ignore=[])
+
+elif args.task == 'cptac_type':
+    args.n_classes=4
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/tumor_type.csv',
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {'GBM':0, 'LUAD':1, 'PDA':2, 'UCEC':3},
+                            patient_strat=True,
+                            ignore=[])
+
+elif args.task == 'uhn_luad_hne_5x':
+    args.n_classes=2
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/uhn_luad_hne_5x.csv',
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {0:0, 1:1},
+                            patient_strat=True,
+                            ignore=[])
+
+elif args.task == 'uhn_luad_hne_20x':
+    args.n_classes=2
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/uhn_luad_hne_20x.csv',
+                            shuffle = False, 
+                            seed = args.seed, 
+                            print_info = True,
+                            label_dict = {0:0, 1:1},
                             patient_strat=True,
                             ignore=[])
 

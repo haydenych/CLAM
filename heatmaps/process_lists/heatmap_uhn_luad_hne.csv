@@ -1,0 +1,10 @@
+slide_id,label,patch_level,patch_size,step_size,process,status,seg_level,sthresh,mthresh,close,use_otsu,keep_ids,exclude_ids,a_t,a_h,max_n_holes,vis_level,line_thickness,use_padding,contour_fn
+001.svs,1,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+002B.svs,0,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+004.svs,1,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+005.svs,0,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+011B.svs,0,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+49.svs,1,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+53.svs,1,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+81A.svs,0,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+106A.svs,0,0,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt

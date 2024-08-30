@@ -1,0 +1,9 @@
+slide_id,label,patch_level,patch_size,step_size,process,status,seg_level,sthresh,mthresh,close,use_otsu,keep_ids,exclude_ids,a_t,a_h,max_n_holes,vis_level,line_thickness,use_padding,contour_fn
+C3L-00001-21.svs,tumor_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00001-26.svs,normal_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00009-21.svs,tumor_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00009-26.svs,normal_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00080-21.svs,tumor_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00080-26.svs,normal_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00083-21.svs,tumor_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
+C3L-00083-26.svs,normal_tissue,1,224,224,1,processed,2,8,7,4,False,none,none,16,4,8,2,100,True,four_pt
